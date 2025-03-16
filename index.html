@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rama & Sinta - Wedding Invitation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Noto+Sans+Javanese&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Countdown Timer -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #1e3a8a;
+            --color-secondary: #0ea5e9;
+            --color-accent: #e0f2fe;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .javanese-text {
+            font-family: 'Noto Sans Javanese', sans-serif;
+        }
+
+        .hero-section {
+            background-image: linear-gradient(rgba(30, 58, 138, 0.7), rgba(14, 165, 233, 0.7)), 
+                            url('https://images.pexels.com/photos/3201768/pexels-photo-3201768.jpeg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 90%;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .countdown-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+
+            .hero-content {
+                max-width: 800px;
+                padding: 3rem;
+            }
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-number {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-label {
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            opacity: 0.9;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .date-venue {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .javanese-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.pexels.com/photos/7794435/pexels-photo-7794435.jpeg');
+            opacity: 0.15;
+            background-size: 200px;
+            background-repeat: repeat;
+            pointer-events: none;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-semibold">
+                    <span class="text-[#1e3a8a]">Rama & Sinta</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-[#0ea5e9] transition-colors">Home</a>
+                    <a href="#couple" class="text-gray-700 hover:text-[#0ea5e9] transition-colors">Couple</a>
+                    <a href="#event" class="text-gray-700 hover:text-[#0ea5e9] transition-colors">Event</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-[#0ea5e9] transition-colors">Gallery</a>
+                    <a href="#rsvp" class="text-gray-700 hover:text-[#0ea5e9] transition-colors">RSVP</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="javanese-pattern"></div>
+        <div class="hero-content">
+            <h1 class="title fade-in-up">Rama & Sinta</h1>
+            <p class="subtitle fade-in-up" style="animation-delay: 0.3s">Are getting married</p>
+            <p class="javanese-text subtitle fade-in-up" style="animation-delay: 0.4s">ꦱꦸꦒꦼꦁꦫꦮꦸꦃ</p>
+            <div class="date-venue fade-in-up" style="animation-delay: 0.5s">
+                <p>Saturday, December 23, 2023</p>
+                <p>Borobudur Temple, Magelang</p>
+            </div>
+            <div class="countdown-grid fade-in-up" style="animation-delay: 0.6s">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Section -->
+    <section id="couple" class="py-20 bg-[#e0f2fe] relative">
+        <div class="javanese-pattern"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl text-center mb-16 font-playfair text-[#1e3a8a]">The Beautiful Couple</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center" data-aos="fade-right">
+                    <div class="w-64 h-64 mx-auto mb-6 rounded-full p-2 bg-gradient-to-r from-[#1e3a8a] via-[#0ea5e9] to-[#7dd3fc] shadow-xl">
+                        <img src="https://images.pexels.com/photos/7794661/pexels-photo-7794661.jpeg" alt="Groom" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h3 class="text-2xl mb-4 font-playfair text-[#1e3a8a]">Rama Wijaya</h3>
+                    <p class="text-gray-600">Son of Mr. & Mrs. Dasharatha</p>
+                </div>
+                <div class="text-center" data-aos="fade-left">
+                    <div class="w-64 h-64 mx-auto mb-6 rounded-full p-2 bg-gradient-to-r from-[#1e3a8a] via-[#0ea5e9] to-[#7dd3fc] shadow-xl">
+                        <img src="https://images.pexels.com/photos/7794663/pexels-photo-7794663.jpeg" alt="Bride" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h3 class="text-2xl mb-4 font-playfair text-[#1e3a8a]">Sinta Dewi</h3>
+                    <p class="text-gray-600">Daughter of Mr. & Mrs. Janaka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Section -->
+    <section id="event" class="py-20 bg-white relative">
+        <div class="javanese-pattern"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl text-center mb-16 font-playfair text-[#1e3a8a]">Wedding Ceremony</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0ea5e9]/20 hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up">
+                    <div class="text-center">
+                        <i class="fas fa-ring text-4xl text-[#0ea5e9] mb-4"></i>
+                        <h3 class="text-2xl mb-4 font-playfair text-[#1e3a8a]">Akad Nikah</h3>
+                        <p class="text-gray-600 mb-2">Saturday, December 23, 2023</p>
+                        <p class="text-gray-600 mb-2">08:00 WIB</p>
+                        <p class="text-gray-600">Borobudur Temple, Magelang</p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-[#0ea5e9]/20 hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center">
+                        <i class="fas fa-glass-cheers text-4xl text-[#0ea5e9] mb-4"></i>
+                        <h3 class="text-2xl mb-4 font-playfair text-[#1e3a8a]">Reception</h3>
+                        <p class="text-gray-600 mb-2">Saturday, December 23, 2023</p>
+                        <p class="text-gray-600 mb-2">11:00 WIB</p>
+                        <p class="text-gray-600">Borobudur Temple, Magelang</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-[#e0f2fe] relative">
+        <div class="javanese-pattern"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl text-center mb-16 font-playfair text-[#1e3a8a]">Our Moments</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 relative overflow-hidden rounded-lg shadow-lg group" data-aos="fade-up">
+                    <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg" alt="Featured Gallery" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-[#1e3a8a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-semibold">Pre-Wedding</h3>
+                            <p class="text-sm opacity-90">Borobudur Temple</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-lg group" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg" alt="Gallery 1" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-[#1e3a8a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-lg font-semibold">Engagement</h3>
+                            <p class="text-sm opacity-90">Special Moments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-lg group" data-aos="fade-up">
+                    <img src="https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg" alt="Gallery 2" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-[#1e3a8a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-lg font-semibold">Traditional Ceremony</h3>
+                            <p class="text-sm opacity-90">Javanese Customs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-lg group" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg" alt="Gallery 3" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-[#1e3a8a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-lg font-semibold">Love Story</h3>
+                            <p class="text-sm opacity-90">Our Journey</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-lg shadow-lg group" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.pexels.com/photos/1702373/pexels-photo-1702373.jpeg" alt="Gallery 4" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-[#1e3a8a]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-lg font-semibold">Together Forever</h3>
+                            <p class="text-sm opacity-90">Our Promise</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-20 bg-white relative">
+        <div class="javanese-pattern"></div>
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl text-center mb-16 font-playfair text-[#1e3a8a]">RSVP</h2>
+            <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg border-2 border-[#0ea5e9]/20 hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up">
+                <form id="rsvp-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]" required>
+                    </div>
+                    <div>
+                        <label for="attendance" class="block text-gray-700 mb-2">Will you attend?</label>
+                        <select id="attendance" name="attendance" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]" required>
+                            <option value="">Please select</option>
+                            <option value="yes">Yes, I will attend</option>
+                            <option value="no">No, I cannot attend</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-[#0ea5e9] text-white py-2 rounded-lg hover:bg-[#1e3a8a] transition-colors">
+                        Send RSVP
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1e3a8a] text-white py-12 relative">
+        <div class="javanese-pattern"></div>
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl mb-4 font-playfair">Rama & Sinta</h2>
+            <p class="mb-4">Thank you for being part of our special day</p>
+            <p class="javanese-text text-xl mb-6">ꦩꦠꦸꦂꦤꦸꦮꦸꦤ꧀</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:text-[#0ea5e9] transition-colors">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="hover:text-[#0ea5e9] transition-colors">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="#" class="hover:text-[#0ea5e9] transition-colors">
+                    <i class="fab fa-twitter text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = luxon.DateTime.fromISO('2023-12-23T08:00:00', { zone: 'Asia/Jakarta' });
+            const now = luxon.DateTime.now().setZone('Asia/Jakarta');
+            const diff = weddingDate.diff(now, ['days', 'hours', 'minutes', 'seconds']).toObject();
+
+            document.getElementById('days').textContent = Math.max(0, Math.floor(diff.days));
+            document.getElementById('hours').textContent = Math.max(0, Math.floor(diff.hours));
+            document.getElementById('minutes').textContent = Math.max(0, Math.floor(diff.minutes));
+            document.getElementById('seconds').textContent = Math.max(0, Math.floor(diff.seconds));
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
